@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'HTTParty'
+require 'httparty'
 require 'pp'
 require 'json'
 
@@ -27,18 +27,18 @@ end
 
 class Tix  
   include HTTParty
-  base_uri 'http://localhost:8080/parakeet/'
+  base_uri 'http://localhost:8080/'
   headers 'User-Agent' => 'load-test', 'Content-Type' => 'application/json'
   format :json
   
   def self.create_field(fld)
-    self.post('http://localhost:8080/parakeet/fields', :body=>fld.to_json)
+    self.post('http://localhost:8080/tickets/fields', :body=>fld.to_json)
   end
 
   def self.create_ticket(props)
     ticket = {'name' => 'ticket'}
     ticket['props'] = props    
-    self.post('http://localhost:8080/parakeet', :body=>ticket.to_json)
+    self.post('http://localhost:8080/tickets/', :body=>ticket.to_json)
   end
 end
 
