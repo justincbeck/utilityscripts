@@ -41,11 +41,16 @@ class Athena
     ticket['props'] = props    
     self.post(base_uri, :body=>ticket.to_json)
   end
-  
-  def self.find_tickets(search_terms)
+
+  def self.find_tickets(search_terms, limit=nil)
     query_string = search_terms.map { |k,v| "%s==%s" % [URI.encode(k.to_s), URI.encode(v.to_s)] }.join('&')
-    tickets = self.get(base_uri + '/?' + query_string).parsed_response
-    pp tickets
+    query_string = base_uri + '/?' + query_string
+    
+    if(!limit.nil?)
+      query_string = query_string = query_string + '&_limit=' + limit.to_s
+    end  
+    
+    tickets = self.get(query_string).parsed_response
     tickets
   end
   
