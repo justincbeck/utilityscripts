@@ -29,7 +29,7 @@ end
 class Athena  
   include HTTParty
   base_uri 'http://localhost:8080/tickets/'
-  headers 'User-Agent' => 'load-test', 'Content-Type' => 'application/json', 'X=ATHENA-Key' => 'TRANSACTION_TEST'
+  headers 'User-Agent' => 'load-test', 'Content-Type' => 'application/json', 'X-ATHENA-Key' => 'TRANSACTION_TEST'
   format :json
   
   def self.create_field(fld)
