@@ -31,7 +31,7 @@ end
 #for performances of 'Jersey Boys'
 (1..2).each do |i|
   ticket_hash = Hash.new
-  ticket_hash['PERFORMANCE'] = '2010-10-0' + i.to_s + ' 09:00'
+  ticket_hash['PERFORMANCE'] = '2010-10-0' + i.to_s + 'T09:00:00-04:00'
   ticket_hash['SOLD'] = 'false'
   ticket_hash['VENUE'] = 'St. James Theater'
   ticket_hash['TITLE'] = 'Jersey Boys'
