@@ -41,7 +41,6 @@ class Tix
     self.post('http://localhost:8080/tickets/', :body=>ticket.to_json)
   end
 end
-
 #add fields
 seat_number = {'valueType'=>'STRING', 'name'=>'SEAT_NUMBER', 'strict'=>'false'}
 section = {'valueType'=>'STRING', 'name'=>'SECTION', 'strict'=>'false'}
@@ -52,8 +51,13 @@ price = {'valueType'=>'INTEGER', 'name'=>'PRICE', 'strict'=>'false'}
 venue = {'valueType'=>'STRING', 'name'=>'VENUE', 'strict'=>'false'}
 title = {'valueType'=>'STRING', 'name'=>'TITLE', 'strict'=>'false'}
 half_price = {'valueType'=>'BOOLEAN', 'name'=>'HALF_PRICE', 'strict'=>'false'}
+event = {'valueType'=>'STRING', 'name'=>'EVENT', 'strict'=>'false'}
 
-fields_to_add = [seat_number, section, tier, performance, sold, price, venue, title, half_price]
+transactionId = {'valueType'=>'STRING', 'name'=>'TRANSACTION_ID', 'strict'=>'false'}
+lockedByIp = {'valueType'=>'STRING', 'name'=>'LOCKED_BY_IP', 'strict'=>'false'}
+lockedByApiKey = {'valueType'=>'STRING', 'name'=>'LOCKED_BY_API_KEY', 'strict'=>'false'}
+lockExpires = {'valueType'=>'DATETIME', 'name'=>'LOCK_EXPIRES', 'strict'=>'false'}
+lockTimes = {'valueType'=>'INTEGER', 'name'=>'LOCK_TIMES', 'strict'=>'false'}
 
 fields_to_add.each do |f|
   response = Tix.create_field f

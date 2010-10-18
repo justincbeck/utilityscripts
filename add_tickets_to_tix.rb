@@ -14,6 +14,7 @@ price = {'valueType'=>'INTEGER', 'name'=>'PRICE', 'strict'=>'false'}
 venue = {'valueType'=>'STRING', 'name'=>'VENUE', 'strict'=>'false'}
 title = {'valueType'=>'STRING', 'name'=>'TITLE', 'strict'=>'false'}
 half_price = {'valueType'=>'BOOLEAN', 'name'=>'HALF_PRICE', 'strict'=>'false'}
+event = {'valueType'=>'STRING', 'name'=>'EVENT', 'strict'=>'false'}
 
 transactionId = {'valueType'=>'STRING', 'name'=>'TRANSACTION_ID', 'strict'=>'false'}
 lockedByIp = {'valueType'=>'STRING', 'name'=>'LOCKED_BY_IP', 'strict'=>'false'}
@@ -21,7 +22,7 @@ lockedByApiKey = {'valueType'=>'STRING', 'name'=>'LOCKED_BY_API_KEY', 'strict'=>
 lockExpires = {'valueType'=>'DATETIME', 'name'=>'LOCK_EXPIRES', 'strict'=>'false'}
 lockTimes = {'valueType'=>'INTEGER', 'name'=>'LOCK_TIMES', 'strict'=>'false'}
 
-fields_to_add = [seat_number, section, tier, performance, sold, price, venue, title, half_price, transactionId, lockedByIp, lockedByApiKey, lockExpires, lockTimes]
+fields_to_add = [seat_number, section, tier, performance, sold, price, venue, title, event, half_price, transactionId, lockedByIp, lockedByApiKey, lockExpires, lockTimes]
 
 fields_to_add.each do |f|
   response = Athena.create_field f
@@ -31,10 +32,10 @@ end
 #for performances of 'Jersey Boys'
 (1..2).each do |i|
   ticket_hash = Hash.new
-  ticket_hash['PERFORMANCE'] = '2010-10-0' + i.to_s + 'T09:00:00-04:00'
+  ticket_hash['PERFORMANCE'] = '2010-11-0' + i.to_s + 'T09:00:00-04:00'
   ticket_hash['SOLD'] = 'false'
   ticket_hash['VENUE'] = 'St. James Theater'
-  ticket_hash['TITLE'] = 'Jersey Boys'
+  ticket_hash['TITLE'] = 'Oklahoma'
   
   ['A', 'B'].each do |sec|
     ticket_hash['SECTION'] = sec
