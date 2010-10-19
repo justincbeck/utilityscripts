@@ -51,7 +51,7 @@ end
     
     (0..2).each do |seat_num|
       ticket_hash['SEAT_NUMBER'] = seat_num.to_s
-      pp Athena.create_ticket(ticket_hash).parsed_response
+      pp Athena.create_ticket(ticket_hash)
       sleep 0.1
     end
   end    

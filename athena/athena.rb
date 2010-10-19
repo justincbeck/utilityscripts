@@ -39,7 +39,7 @@ class Athena
   def self.create_ticket(props)
     ticket = {'name' => 'tickets'}
     ticket['props'] = props    
-    self.post(base_uri, :body=>ticket.to_json)
+    self.post(base_uri + '/', :body=>ticket.to_json).parsed_response
   end
 
   def self.find_tickets(search_terms, limit=nil)
