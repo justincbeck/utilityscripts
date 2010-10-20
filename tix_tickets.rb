@@ -13,7 +13,7 @@ ticket = {}
 ticket['PERFORMANCE'] = "2010-10-20T17:17:30-04:00"
 ticket['SOLD'] = 'false'
 ticket['VENUE'] = 'St. James Theater'
-ticket['TITLE'] = 'Oklahoma'
+ticket['EVENT'] = 'Oklahoma'
 
 
 [50,100].each do |price|

@@ -11,9 +11,6 @@ price:
 venue:
   valueType: STRING
   strict: false
-title:
-  valueType: STRING
-  strict: false
 event:
   valueType: STRING
   strict: false
