@@ -1,13 +1,4 @@
 # Core
-seat_number:
-  valueType: STRING
-  strict: false
-section:
-  valueType: STRING
-  strict: false
-tier:
-  valueType: STRING
-  strict: false
 performance:
   valueType: DATETIME
   strict: false
