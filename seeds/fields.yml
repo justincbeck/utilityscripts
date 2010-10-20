@@ -1,0 +1,45 @@
+# Core
+seat_number:
+  valueType: STRING
+  strict: false
+section:
+  valueType: STRING
+  strict: false
+tier:
+  valueType: STRING
+  strict: false
+performance:
+  valueType: DATETIME
+  strict: false
+sold:
+  valueType: BOOLEAN
+  strict: false
+price:
+  valueType: INTEGER
+  strict: false
+venue:
+  valueType: STRING
+  strict: false
+title:
+  valueType: STRING
+  strict: false
+event:
+  valueType: STRING
+  strict: false
+
+# Transactions
+transaction_id:
+  valueType: STRING
+  strict: false
+locked_by_ip:
+  valueType: STRING
+  strict: false
+locked_by_api_key:
+  valueType: STRING
+  strict: false
+lock_expires:
+  valueType: DATETIME
+  strict: false
+lock_times:
+  valueType: INTEGER
+  strict: false
