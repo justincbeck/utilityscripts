@@ -1,31 +1,11 @@
+#!/usr/bin/env ruby
+$LOAD_PATH << './lib'
+
 require 'rubygems'
 require 'HTTParty'
 require 'pp'
 require 'json'
-require 'athena/athena.rb'
-
-#add fields
-seat_number = {'valueType'=>'STRING', 'name'=>'SEAT_NUMBER', 'strict'=>'false'}
-section = {'valueType'=>'STRING', 'name'=>'SECTION', 'strict'=>'false'}
-tier = {'valueType'=>'STRING', 'name'=>'TIER', 'strict'=>'false'}
-performance = {'valueType'=>'DATETIME', 'name'=>'PERFORMANCE', 'strict'=>'false'}
-sold = {'valueType'=>'BOOLEAN', 'name'=>'SOLD', 'strict'=>'false'}
-price = {'valueType'=>'INTEGER', 'name'=>'PRICE', 'strict'=>'false'}
-venue = {'valueType'=>'STRING', 'name'=>'VENUE', 'strict'=>'false'}
-title = {'valueType'=>'STRING', 'name'=>'TITLE', 'strict'=>'false'}
-half_price = {'valueType'=>'BOOLEAN', 'name'=>'HALF_PRICE', 'strict'=>'false'}
-event = {'valueType'=>'STRING', 'name'=>'EVENT', 'strict'=>'false'}
-
-transactionId = {'valueType'=>'STRING', 'name'=>'TRANSACTION_ID', 'strict'=>'false'}
-lockedByIp = {'valueType'=>'STRING', 'name'=>'LOCKED_BY_IP', 'strict'=>'false'}
-lockedByApiKey = {'valueType'=>'STRING', 'name'=>'LOCKED_BY_API_KEY', 'strict'=>'false'}
-lockExpires = {'valueType'=>'DATETIME', 'name'=>'LOCK_EXPIRES', 'strict'=>'false'}
-lockTimes = {'valueType'=>'INTEGER', 'name'=>'LOCK_TIMES', 'strict'=>'false'}
-
-fields_to_add.each do |f|
-  response = Athena.create_field f
-  # pp response.parsed_response
-end
+require 'athena'
 
 ticket_hash = Hash.new
 (0..20).each do |seat_num|
@@ -50,14 +30,18 @@ transaction = Athena.lock_tickets(ticket_ids)
 pp transaction
 
 #hang out for a bit
-sleep 60
+sleep 1
 
 #renew the lock
 transaction = Athena.renew_lock(transaction)
-pp transaction
+ap transaction
 
 sleep 0.5
 
-#renew the lock
-transaction = Athena.renew_lock(transaction)
-pp transaction
+#renew the lock, this should fail
+Athena.renew_lock(transaction)
+
+sleep 3
+
+#now delete the transaction
+transaction = Athena.delete_lock(transaction)

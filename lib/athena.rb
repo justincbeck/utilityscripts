@@ -64,7 +64,13 @@ class Athena
   end
 
   def self.renew_lock(tran)
+    tran['status']='RENEW'
     response = self.put(base_uri + '/transactions/' + tran.id, :body=>tran.to_json)
+    response.parsed_response
+  end
+
+  def self.delete_lock(tran)
+    response = self.delete(base_uri + '/transactions/' + tran.id)
     response.parsed_response
   end
 

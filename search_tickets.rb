@@ -2,7 +2,7 @@ require 'rubygems'
 require 'HTTParty'
 require 'pp'
 require 'json'
-require 'athena/athena.rb'
+require 'athena'
 
 search_hash = Hash.new
 search_hash['SECTION'] = 'B'
