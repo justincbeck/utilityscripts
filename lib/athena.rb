@@ -40,7 +40,7 @@ class Athena
 
   def self.create_ticket(props)
     ticket = {'name' => 'tickets'}
-    ticket['props'] = props
+    ticket.merge! props
     self.post(base_uri + '/', :body=>ticket.to_json).parsed_response
   end
 
