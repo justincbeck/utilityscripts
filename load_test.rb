@@ -17,7 +17,7 @@ half_price = {'valueType'=>'BOOLEAN', 'name'=>'HALF_PRICE', 'strict'=>'false'}
 fields_to_add = [seat_number, section, tier, performance, sold, price, venue, title, half_price]
 
 fields_to_add.each do |f|
-  response = Athena.create_field f
+  response = Athena::Tix.create_field f
   pp response.parsed_response
 end
 
@@ -34,7 +34,7 @@ end
       ticket_hash['TIER'] = 'NONE'
     end
     
-    pp Athena.find_tickets(ticket_hash).parsed_response
+    pp Athena::Tix.find_tickets(ticket_hash).parsed_response
   end    
 end
 

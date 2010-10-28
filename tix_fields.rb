@@ -12,6 +12,6 @@ require 'athena'
 fields = YAML.load_file('seeds/fields.yml')
 
 fields.each do |name, field|
-  response = Athena.create_field(name, field)
+  response = Athena::Tix.create_field(name, field)
   ap response.parsed_response
 end

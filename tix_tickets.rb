@@ -19,6 +19,6 @@ ticket['EVENT'] = 'Oklahoma'
 [50,100].each do |price|
   ticket['PRICE'] = price
   10.times do
-    ap Athena.create_ticket(ticket)
+    ap Athena::Tix.create_ticket(ticket)
   end
 end
