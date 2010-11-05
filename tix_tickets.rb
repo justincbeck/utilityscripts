@@ -10,14 +10,14 @@ require 'yaml'
 require 'athena'
 
 ticket = {}
-ticket['PERFORMANCE'] = "2010-10-20T17:17:30-04:00"
-ticket['SOLD'] = 'false'
-ticket['VENUE'] = 'St. James Theater'
-ticket['EVENT'] = 'Oklahoma'
+ticket['performance'] = "2010-10-20T17:17:30-04:00"
+ticket['sold'] = 'false'
+ticket['venue'] = 'St. James Theater'
+ticket['event'] = 'Oklahoma'
 
 
 [50,100].each do |price|
-  ticket['PRICE'] = price
+  ticket['price'] = price
   10.times do
     ap Athena::Tix.create_ticket(ticket)
   end

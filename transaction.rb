@@ -9,15 +9,15 @@ require 'athena'
 
 ticket_hash = Hash.new
 (0..20).each do |seat_num|
-  ticket_hash['VENUE'] = 'Venue name'
-  ticket_hash['EVENT'] = 'Event name'
+  ticket_hash['venue'] = 'Venue name'
+  ticket_hash['event'] = 'Event name'
   pp Athena::Tix.create_ticket(ticket_hash).parsed_response
   sleep 0.1
 end
 
 #Find some tickets
 search_hash = Hash.new
-search_hash['VENUE'] = 'Venue name'
+search_hash['venue'] = 'Venue name'
 tickets = Athena::Tix.find_tickets(search_hash)
 
 #lock the first two

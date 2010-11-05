@@ -16,18 +16,18 @@ event:
   strict: false
 
 # Transactions
-transaction_id:
+transactionId:
   valueType: STRING
   strict: false
-locked_by_ip:
+lockedByIp:
   valueType: STRING
   strict: false
-locked_by_api_key:
+lockedByApiKey:
   valueType: STRING
   strict: false
-lock_expires:
+lockExpires:
   valueType: DATETIME
   strict: false
-lock_times:
+lockTimes:
   valueType: INTEGER
   strict: false

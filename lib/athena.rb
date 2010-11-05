@@ -35,7 +35,7 @@ module Athena
     format :json
 
     def self.create_field(name, field)
-      field['name'] = name.upcase
+      field['name'] = name
       self.post(base_uri + '/fields', :body=>field.to_json)
     end
 
