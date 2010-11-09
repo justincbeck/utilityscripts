@@ -33,15 +33,15 @@ pp transaction
 sleep 1
 
 #renew the lock
-transaction = Athena::Tix.renew_lock(transaction)
-ap transaction
+lock = Athena::Tix.renew_lock(transaction)
+ap lock
 
 sleep 0.5
 
 #renew the lock, this should fail
-Athena::Tix.renew_lock(transaction)
+Athena::Tix.renew_lock(lock)
 
 sleep 3
 
 #now delete the transaction
-transaction = Athena::Tix.delete_lock(transaction)
+lock = Athena::Tix.delete_lock(lock)
