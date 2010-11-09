@@ -64,6 +64,12 @@ module Athena
       response.parsed_response
     end
 
+    def self.get_lock(lockId)
+      lock = Hash.new
+      response = self.get(base_uri + '/locks/' + lockId.to_s)
+      response.parsed_response
+    end
+
     def self.renew_lock(lock)
       lock['status']='RENEW'
       response = self.put(base_uri + '/locks/' + lock.id, :body=>lock.to_json)

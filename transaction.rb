@@ -26,14 +26,18 @@ ticket2 = tickets[1]
 ticket_ids = Array.new
 ticket_ids << ticket1.id
 ticket_ids << ticket2.id
-transaction = Athena::Tix.lock_tickets(ticket_ids)
-pp transaction
+lock = Athena::Tix.lock_tickets(ticket_ids)
+ap lock
 
 #hang out for a bit
 sleep 1
 
+#get the lock to see what's up
+lock = Athena::Tix.get_lock(lock.id)
+ap lock
+
 #renew the lock
-lock = Athena::Tix.renew_lock(transaction)
+lock = Athena::Tix.renew_lock(lock)
 ap lock
 
 sleep 0.5
