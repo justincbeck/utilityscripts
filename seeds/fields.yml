@@ -16,7 +16,7 @@ event:
   strict: false
 
 # Transactions
-transactionId:
+lockId:
   valueType: STRING
   strict: false
 lockedByIp:

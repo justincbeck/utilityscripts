@@ -60,23 +60,23 @@ module Athena
     def self.lock_tickets(ticket_ids)
       tran = Hash.new
       tran['tickets'] = ticket_ids
-      response = self.post(base_uri + '/transactions', :body=>tran.to_json)
+      response = self.post(base_uri + '/locks', :body=>tran.to_json)
       response.parsed_response
     end
 
     def self.renew_lock(tran)
       tran['status']='RENEW'
-      response = self.put(base_uri + '/transactions/' + tran.id, :body=>tran.to_json)
+      response = self.put(base_uri + '/locks/' + tran.id, :body=>tran.to_json)
       response.parsed_response
     end
 
     def self.delete_lock(tran)
-      response = self.delete(base_uri + '/transactions/' + tran.id)
+      response = self.delete(base_uri + '/locks/' + tran.id)
       response.parsed_response
     end
 
     def self.checkout(tran)
-      response = self.put(base_uri + '/transactions/' + tran.id, :body=>tran.to_json)
+      response = self.put(base_uri + '/locks/' + tran.id, :body=>tran.to_json)
       response.parsed_response
     end
   end
