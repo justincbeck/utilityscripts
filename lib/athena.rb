@@ -30,24 +30,24 @@ end
 module Athena
   class Tix
     include HTTParty
-    base_uri 'http://localhost:8080/tickets/'
+    base_uri 'http://localhost:8080/tix/'
     headers 'User-Agent' => 'load-test', 'Content-Type' => 'application/json', 'X-ATHENA-Key' => 'TRANSACTION_TEST'
     format :json
 
     def self.create_field(name, field)
       field['name'] = name
-      self.post(base_uri + '/fields', :body=>field.to_json)
+      self.post(base_uri + '/meta/fields', :body=>field.to_json)
     end
 
     def self.create_ticket(props)
-      ticket = {'name' => 'tickets'}
+      ticket = {'type' => 'ticket'}
       ticket.merge! props
-      self.post(base_uri + '/', :body=>ticket.to_json).parsed_response
+      self.post(base_uri + '/tickets', :body=>ticket.to_json).parsed_response
     end
 
     def self.find_tickets(search_terms, limit=nil)
       query_string = search_terms.map { |k,v| "%s=eq%s" % [URI.encode(k.to_s), URI.encode(v.to_s)] }.join('&')
-      query_string = base_uri + '/?' + query_string
+      query_string = base_uri + '/tickets?' + query_string
 
       if(!limit.nil?)
         query_string = query_string = query_string + '&_limit=' + limit.to_s
@@ -60,30 +60,36 @@ module Athena
     def self.lock_tickets(ticket_ids)
       lock = Hash.new
       lock['tickets'] = ticket_ids
-      response = self.post(base_uri + '/locks', :body=>lock.to_json)
+      response = self.post(base_uri + '/meta/locks', :body=>lock.to_json)
       response.parsed_response
     end
 
     def self.get_lock(lockId)
       lock = Hash.new
-      response = self.get(base_uri + '/locks/' + lockId.to_s)
+      response = self.get(base_uri + '/meta/locks/' + lockId.to_s)
       response.parsed_response
     end
 
     def self.renew_lock(lock)
       lock['status']='RENEW'
-      response = self.put(base_uri + '/locks/' + lock.id, :body=>lock.to_json)
+      lock['lockExpires'] = format_date_for_athena(lock['lockExpires'])
+      response = self.put(base_uri + '/meta/locks/' + lock.id, :body=>lock.to_json)
       response.parsed_response
     end
 
     def self.delete_lock(lock)
-      response = self.delete(base_uri + '/locks/' + lock.id)
+      response = self.delete(base_uri + '/meta/locks/' + lock.id)
       response.parsed_response
     end
 
     def self.checkout(lock)
-      response = self.put(base_uri + '/locks/' + lock.id, :body=>lock.to_json)
+      lock['lockExpires'] = format_date_for_athena(lock['lockExpires'])
+      response = self.put(base_uri + '/meta/locks/' + lock.id, :body=>lock.to_json)
       response.parsed_response
+    end
+    
+    def self.format_date_for_athena(d)
+      d.utc.strftime("%Y-%m-%dT%H:%M:%S+00:00")
     end
   end
 end
