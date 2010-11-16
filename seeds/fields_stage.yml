@@ -1,0 +1,29 @@
+#events
+name:
+  valueType: STRING
+  strict: false
+venue:
+  valueType: STRING
+  strict: false
+producer:
+  valueType: STRING
+  strict: false
+chartId:
+  valueType: STRING
+  strict: false
+
+#performances
+datetime:
+  valueType: DATETIME
+  strict: false
+eventId:
+  valueType: STRING
+  strict: false
+chartId:
+  valueType: STRING
+  strict: false
+  
+#charts
+capacity: 
+  valueType: INTEGER
+  strict: false 

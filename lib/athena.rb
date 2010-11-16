@@ -40,7 +40,7 @@ module Athena
     end
 
     def self.create_ticket(props)
-      ticket = {'type' => 'ticket'}
+      ticket = Hash.new
       ticket.merge! props
       self.post(base_uri + '/tickets', :body=>ticket.to_json).parsed_response
     end
@@ -91,5 +91,5 @@ module Athena
     def self.format_date_for_athena(d)
       d.utc.strftime("%Y-%m-%dT%H:%M:%S+00:00")
     end
-  end
+  end  
 end
