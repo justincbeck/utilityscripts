@@ -9,7 +9,7 @@ module Athena
   
   class Stage
     include HTTParty
-    base_uri 'http://localhost:8080/tix/'
+    base_uri 'http://localhost:8080/stage/'
     headers 'User-Agent' => 'athena-stage-client', 'Content-Type' => 'application/json', 'X-ATHENA-Key' => 'PAYMENTS_TEST'
     format :json
     
