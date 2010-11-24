@@ -1,0 +1,7 @@
+#people
+producerId:
+  valueType: STRING
+  strict: false
+email:
+  valueType: STRING
+  strict: false

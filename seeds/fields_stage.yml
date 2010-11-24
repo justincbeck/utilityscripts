@@ -11,6 +11,9 @@ producer:
 chartId:
   valueType: STRING
   strict: false
+producerId:
+  valueType: STRING
+  strict: false
 
 #performances
 datetime:
@@ -20,6 +23,9 @@ eventId:
   valueType: STRING
   strict: false
 chartId:
+  valueType: STRING
+  strict: false
+producerId:
   valueType: STRING
   strict: false
   

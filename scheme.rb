@@ -9,9 +9,10 @@ require 'json'
 require 'yaml'
 require 'athena'
 
-fields = YAML.load_file('seeds/fields_tix.yml')
+component_name = ARGV[0]
+fields = YAML.load_file('seeds/fields_' + component_name + '.yml')
 
 fields.each do |name, field|
-  response = Athena::Tix.create_field(name, field)
+  response = Athena::Util.create_field(component_name, name, field)
   ap response.parsed_response
 end

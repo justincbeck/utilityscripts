@@ -27,7 +27,19 @@ class ::Hash
   end
 end
 
-module Athena
+module Athena  
+  class Util
+    include HTTParty
+    base_uri 'http://localhost:8080/'
+    headers 'User-Agent' => 'load-test', 'Content-Type' => 'application/json', 'X-ATHENA-Key' => 'TRANSACTION_TEST'
+    format :json
+
+    def self.create_field(component, name, field)
+      field['name'] = name
+      self.post(base_uri + '/' + component + '/meta/fields', :body=>field.to_json)
+    end
+  end
+  
   class Tix
     include HTTParty
     base_uri 'http://localhost:8080/tix/'
