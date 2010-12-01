@@ -11,7 +11,7 @@ producer:
 chartId:
   valueType: STRING
   strict: false
-producerId:
+producerPid:
   valueType: STRING
   strict: false
 
@@ -25,11 +25,26 @@ eventId:
 chartId:
   valueType: STRING
   strict: false
-producerId:
+producerPid:
   valueType: STRING
   strict: false
   
 #charts
-capacity: 
-  valueType: INTEGER
+name:
+  valueType: STRING
   strict: false 
+  
+#sections
+name:
+  valueType: STRING
+  strict: false 
+capacity:
+  valueType: INTEGER
+  strict: false
+price:
+  valueType: INTEGER
+  strict: false
+chartId:
+  valueType: INTEGER
+  strict: false
+  

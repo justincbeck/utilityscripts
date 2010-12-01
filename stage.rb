@@ -13,7 +13,7 @@ require 'athena_stage'
 fields = YAML.load_file('seeds/fields_stage.yml')
 
 fields.each do |name, field|
-  response = Athena::Tix.create_field(name, field)
+  response = Athena::Stage.create_field(name, field)
   ap response.parsed_response
 end
   

@@ -13,6 +13,11 @@ module Athena
     headers 'User-Agent' => 'athena-stage-client', 'Content-Type' => 'application/json', 'X-ATHENA-Key' => 'PAYMENTS_TEST'
     format :json
     
+    def self.create_field(name, field)
+      field['name'] = name
+      self.post(base_uri + '/meta/fields', :body=>field.to_json)
+    end
+    
     def self.get_event(event_id)
       self.get(base_uri + '/events/' + event_id).parsed_response
     end
