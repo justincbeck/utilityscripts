@@ -24,7 +24,7 @@ module Athena
   
   class Payments
     include HTTParty
-    base_uri 'http://localhost:8080/payments/transactions/'
+    base_uri Athena::ATHENA_HOME_URI + '/payments/'
     headers 'User-Agent' => 'load-test', 'Content-Type' => 'application/json', 'X-ATHENA-Key' => 'PAYMENTS_TEST'
     format :json
     

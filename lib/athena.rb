@@ -28,9 +28,12 @@ class ::Hash
 end
 
 module Athena  
+
+  ATHENA_HOME_URI = 'http://localhost:8080'
+  
   class Util
     include HTTParty
-    base_uri 'http://localhost:8080/'
+    base_uri Athena::ATHENA_HOME_URI
     headers 'User-Agent' => 'load-test', 'Content-Type' => 'application/json', 'X-ATHENA-Key' => 'TRANSACTION_TEST'
     format :json
 
@@ -42,7 +45,7 @@ module Athena
   
   class Tix
     include HTTParty
-    base_uri 'http://localhost:8080/tix/'
+    base_uri Athena::ATHENA_HOME_URI + '/tix/'
     headers 'User-Agent' => 'load-test', 'Content-Type' => 'application/json', 'X-ATHENA-Key' => 'TRANSACTION_TEST'
     format :json
 

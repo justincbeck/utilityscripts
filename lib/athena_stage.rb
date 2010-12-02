@@ -5,11 +5,10 @@ require 'ap'
 require 'json'
 require 'active_support'
 
-module Athena
-  
+module Athena  
   class Stage
     include HTTParty
-    base_uri 'http://localhost:8080/stage/'
+    base_uri Athena::ATHENA_HOME_URI + '/stage/'
     headers 'User-Agent' => 'athena-stage-client', 'Content-Type' => 'application/json', 'X-ATHENA-Key' => 'PAYMENTS_TEST'
     format :json
     

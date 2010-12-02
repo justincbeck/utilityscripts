@@ -33,6 +33,12 @@ producerPid:
 name:
   valueType: STRING
   strict: false 
+eventId:
+  valueType: STRING
+  strict: false
+chartId:
+  valueType: STRING
+  strict: false
   
 #sections
 name:

@@ -17,7 +17,7 @@ fields.each do |name, field|
   ap response.parsed_response
 end
   
-chart = Athena::Stage.save_chart({:capacity => 95})
+chart = Athena::Stage.save_chart({:name => 'test chart'})
 ap chart
 
 ap Athena::Stage.get_chart(chart['id'])
