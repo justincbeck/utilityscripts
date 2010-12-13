@@ -29,7 +29,11 @@ end
 
 module Athena  
 
+  #local
   ATHENA_HOME_URI = 'http://localhost:8080'
+  
+  #dev
+  #ATHENA_HOME_URI = 'http://184.73.209.105:8888'
   
   class Util
     include HTTParty

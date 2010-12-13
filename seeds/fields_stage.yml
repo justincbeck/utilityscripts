@@ -39,6 +39,12 @@ eventId:
 chartId:
   valueType: STRING
   strict: false
+isTemplate:
+  valueType: BOOLEAN
+  strict: false
+producerPid:
+  valueType: STRING
+  strict: false
   
 #sections
 name:
