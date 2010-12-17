@@ -33,6 +33,9 @@ producerPid:
 name:
   valueType: STRING
   strict: false 
+isTemplate:
+  valueType: BOOLEAN
+  strict: false 
 eventId:
   valueType: STRING
   strict: false

@@ -1,6 +1,15 @@
 # Core
+performanceId:
+  valueType: STRING
+  strict: false
 performance:
   valueType: DATETIME
+  strict: false
+section:
+  valueType: STRING
+  strict: false
+onSale:
+  valueType: BOOLEAN
   strict: false
 sold:
   valueType: BOOLEAN
@@ -9,6 +18,9 @@ price:
   valueType: INTEGER
   strict: false
 venue:
+  valueType: STRING
+  strict: false
+eventId:
   valueType: STRING
   strict: false
 event:
