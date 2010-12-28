@@ -110,5 +110,9 @@ module Athena
     def self.format_date_for_athena(d)
       d.utc.strftime("%Y-%m-%dT%H:%M:%S+00:00")
     end
+    
+    def self.create_tickets(performance)
+      self.post(base_uri + '/meta/ticketfactory', :body=>performance.to_json).parsed_response
+    end
   end  
 end

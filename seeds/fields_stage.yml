@@ -28,6 +28,9 @@ chartId:
 producerPid:
   valueType: STRING
   strict: false
+ticketsCreated:
+  valueType: BOOLEAN
+  strict: false
   
 #charts
 name:

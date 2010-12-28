@@ -3,7 +3,6 @@ $LOAD_PATH << './lib'
 
 require 'rubygems'
 require 'httparty'
-require 'fakeweb'
 require 'pp'
 require 'json'
 require 'yaml'
@@ -17,8 +16,16 @@ fields.each do |name, field|
   ap response.parsed_response
 end
   
-chart = Athena::Stage.save_chart({:name => 'test chart'})
+chart = Athena::Stage.save_template({:name => 'test chart'})
 ap chart
+
+section = {}
+section['capacity'] = "4"
+section['price'] = "44"
+section['name'] = "GA"
+section['chartId'] = chart['id']
+section = Athena::Stage.save_section(section)
+ap section
 
 ap Athena::Stage.get_chart(chart['id'])
 
@@ -26,14 +33,16 @@ event = {}
 event['name'] = "Les Miserables"
 event['venue'] = "Little Theater in Brooklyn"
 event['producer'] = "Jerry Seinfeld"
-event['chartId'] = chart['id']
 event = Athena::Stage.save_event(event)
 ap event
 
-(1..12).each do |day|
-  performance = {}
-  performance['datetime'] = "2011-01-" + day.to_s + "T17:17:30-04:00"
-  performance['eventId'] = event['id']
-  performance['chartId'] = chart['id']
-  ap Athena::Stage.save_performance(performance)
-end
+event_chart = Athena::Stage.add_template_to_event(chart, event)
+ap event_chart
+
+performance = {}
+performance['datetime'] = "2011-01-01T17:17:30-04:00"
+performance['eventId'] = event['id']
+performance['chartId'] = event_chart['id']
+performance = Athena::Stage.save_performance(performance)
+
+Athena::Tix.create_tickets(performance)

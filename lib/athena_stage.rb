@@ -41,9 +41,25 @@ module Athena
       end
     end
 
+    def self.save_section(section)
+      if section['id'].nil?
+        self.post(base_uri + '/sections', :body=>section.to_json).parsed_response
+      else
+        self.put(base_uri + '/sections/' + section['id'], :body=>section.to_json).parsed_response
+      end
+    end
+    
+    def self.get_sections_for_chart(chart)
+      sections = self.get(base_uri + '/sections/?chartId=eq' + chart['id']).parsed_response
+    end
 
     def self.get_chart(chart_id)
       self.get(base_uri + '/charts/' + chart_id).parsed_response
+    end
+    
+    def self.save_template(chart)
+      chart['isTemplate'] = 'true'
+      self.save_chart(chart)
     end
     
     def self.save_chart(chart)
@@ -52,6 +68,22 @@ module Athena
       else
         self.put(base_uri + '/charts/' + chart['id'], :body=>chart.to_json).parsed_response
       end
+    end
+    
+    def self.add_template_to_event(chart, event)
+      sections = self.get_sections_for_chart(chart)
+      chart['eventId'] = event['id']
+      chart['isTemplate'] = 'false'
+      chart['id'] = nil
+      chart = self.save_chart(chart)
+      
+      sections.each do |section|
+        section['chartId'] = chart['id']
+        section['id'] = nil
+        self.save_section(section)
+      end
+      
+      chart
     end
   end
 end
