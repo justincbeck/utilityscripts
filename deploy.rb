@@ -24,7 +24,7 @@ if opts[:people] || opts[:all]
 end
 
 if opts[:orders] || opts[:all]
-  system ("asadmin deploy --force=true components/people/target/people.war")
+  system ("asadmin deploy --force=true components/people/target/orders.war")
 end
 
 if opts[:payments] || opts[:all]
