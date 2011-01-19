@@ -6,12 +6,10 @@ require 'json'
 require 'active_support'
 
 class HTTParty::Request
+    alias :old_perform :perform
     def perform
-      puts(http_method, uri, options.body)
-      validate
-      setup_raw_request
-      get_response
-      handle_response
+    	puts(http_method, uri, options.body)
+	old_perform
     end
 end
 
