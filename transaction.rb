@@ -2,7 +2,7 @@
 $LOAD_PATH << './lib'
 
 require 'rubygems'
-require 'HTTParty'
+require 'httparty'
 require 'pp'
 require 'json'
 require 'athena'
