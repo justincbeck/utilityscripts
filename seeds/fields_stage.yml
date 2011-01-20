@@ -31,6 +31,9 @@ producerPid:
 ticketsCreated:
   valueType: BOOLEAN
   strict: false
+onSale:
+  valueType: BOOLEAN
+  strict: false
   
 #charts
 name:
