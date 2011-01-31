@@ -3,11 +3,20 @@ $LOAD_PATH << File.dirname(__FILE__) + '/lib'
 
 require 'trollop'
 opts = Trollop::options do
-  opt :tix, "Deploy tix only"
-  opt :stage, "Deploy stage only"
-  opt :orders, "Deploy orders only"
-  opt :people, "Deploy people only"
-  opt :payments, "Deploy people only"
+  banner <<-EOS
+    This script will deploy compiled war files to glassfish
+
+    Usage:
+         deploy.rb [options] where [options] are:
+         
+    EOS
+  
+  opt :tix, "Deploy tix"
+  opt :stage, "Deploy stage"
+  opt :orders, "Deploy orders"
+  opt :people, "Deploy people"
+  opt :payments, "Deploy payments"
+  opt :audit, "Deploy auditing"
   opt :all, "Deploy all"
 end
 
@@ -29,4 +38,8 @@ end
 
 if opts[:payments] || opts[:all]
   system ("asadmin deploy --force=true components/payments/target/payments.war")
+end
+
+if opts[:audit] || opts[:all]
+  system ("asadmin deploy --force=true components/audit-server/target/audit.war")
 end
