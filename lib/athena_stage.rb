@@ -85,5 +85,9 @@ module Athena
       
       chart
     end
+    
+    def self.get_performances_by_event(event)
+      self.get(base_uri + '/events/' + event['id'] + '/performances').parsed_response
+    end
   end
 end
