@@ -5,6 +5,12 @@ name:
 venue:
   valueType: STRING
   strict: false
+state:
+  valueType: STRING
+  strict: false
+city:
+  valueType: STRING
+  strict: false
 producer:
   valueType: STRING
   strict: false
