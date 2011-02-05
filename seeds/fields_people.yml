@@ -5,3 +5,17 @@ producerId:
 email:
   valueType: STRING
   strict: false
+
+#relationships
+leftSideId:
+  valueType: STRING
+  strict: false
+relationshipType:
+  valueType: STRING
+  strict: false
+rightSideId:
+  valueType: STRING
+  strict: false
+inverseType:
+  valueType: STRING
+  strict: false
