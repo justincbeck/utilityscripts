@@ -9,7 +9,7 @@ class HTTParty::Request
     alias :old_perform :perform
     def perform
     	puts(http_method, uri, options.body)
-	old_perform
+	    old_perform
     end
 end
 
